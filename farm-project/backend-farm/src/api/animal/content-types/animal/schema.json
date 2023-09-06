@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animals",
+  "info": {
+    "singularName": "animal",
+    "pluralName": "animals",
+    "displayName": "Animal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "Sex": {
+      "type": "enumeration",
+      "enum": [
+        "Macho",
+        "Fêmea"
+      ],
+      "required": true
+    },
+    "Status": {
+      "type": "enumeration",
+      "enum": [
+        "Vivo",
+        "Morto",
+        "Vendido",
+        "Outra Fazenda"
+      ],
+      "default": "Vivo",
+      "required": true
+    },
+    "weight": {
+      "type": "decimal",
+      "required": true
+    },
+    "breed": {
+      "type": "string"
+    },
+    "birth": {
+      "type": "datetime",
+      "required": false
+    },
+    "marking": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "id_mom": {
+      "type": "biginteger"
+    },
+    "photos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::photo.photo",
+      "mappedBy": "animal"
+    },
+    "species": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::specie.specie",
+      "inversedBy": "animals"
+    },
+    "procedures": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::procedure.procedure",
+      "inversedBy": "animals"
+    }
+  }
+}
